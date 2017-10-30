@@ -1,2 +1,2 @@
 # typescript-playground
-Experimenting with TypeScript
+Experimenting with a TypeScript-based React/Redux app
