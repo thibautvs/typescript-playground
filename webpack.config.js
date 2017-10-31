@@ -2,7 +2,7 @@ const path = require('path')
 const HtmlPlugin = require('html-webpack-plugin')
 
 const config = {
-  entry: ['./app/App.tsx'],
+  entry: ['./app/components/App.tsx'],
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js'
