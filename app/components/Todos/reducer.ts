@@ -1,5 +1,4 @@
-/// <reference path="./interfaces.d.ts"/>
-
+import { Todo } from './interfaces'
 import { Action, ActionTypes } from './actionTypes'
 
 type State = Todo[]
