@@ -2,12 +2,13 @@
 
 import * as React from 'react'
 import { Component } from 'react'
-import { ToggleTodoAction, DeleteTodoAction } from './actionTypes'
+import { connect, Dispatch } from 'react-redux'
+import { Action } from './actionTypes'
+import { toggleTodo, deleteTodo } from './actionCreators'
 
 interface Props {
   todo: Todo
-  onToggleClick(id: number): ToggleTodoAction
-  onDeleteClick(id: number): DeleteTodoAction
+  dispatch: Dispatch<Action>
 }
 
 class TodoItem extends Component<Props, {}> {
@@ -18,17 +19,17 @@ class TodoItem extends Component<Props, {}> {
         <input
           type="checkbox"
           checked={completed}
-          onClick={() => this.props.onToggleClick(id)}
+          onClick={() => this.props.dispatch(toggleTodo(id))}
         />
         <span>{title}</span>
         <input
           type="button"
           value="X"
-          onClick={() => this.props.onDeleteClick(id)}
+          onClick={() => this.props.dispatch(deleteTodo(id))}
         />
       </li>
     )
   }
 }
 
-export default TodoItem
+export default connect()(TodoItem)

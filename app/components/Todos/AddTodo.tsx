@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { Component } from 'react'
-import { connect } from 'react-redux';
-import { AddTodoAction } from './actionTypes'
+import { connect, Dispatch } from 'react-redux'
+import { Action } from './actionTypes'
 import { addTodo } from './actionCreators'
 
 interface Props {
-  onAddClick(title: string): AddTodoAction
+  dispatch: Dispatch<Action>
 }
 
 interface State {
@@ -23,9 +23,9 @@ class AddTodo extends Component<Props, State> {
   }
 
   handleSubmit(e: React.ChangeEvent<HTMLFormElement>) {
-    this.props.onAddClick(this.state.title)
-    this.setState({ title: '' })
     e.preventDefault()
+    this.props.dispatch(addTodo(this.state.title))
+    this.setState({ title: '' })
   }
 
   render() {
@@ -42,4 +42,4 @@ class AddTodo extends Component<Props, State> {
   }
 }
 
-export default connect(null, { onAddClick: addTodo })(AddTodo)
+export default connect()(AddTodo)
