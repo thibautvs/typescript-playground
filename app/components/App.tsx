@@ -3,7 +3,8 @@ import * as ReactDOM from 'react-dom'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import logger from 'redux-logger'
-import VisibleTodoList from './Todos/VisibleTodoList'
+import TodoList from './Todos/TodoList'
+import AddTodo from './Todos/AddTodo'
 import todosReducer from './Todos/reducer'
 
 const store = createStore(
@@ -13,7 +14,10 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <VisibleTodoList />
+    <section>
+      <TodoList />
+      <AddTodo />
+    </section>
   </Provider>,
   document.getElementById('root')
 )

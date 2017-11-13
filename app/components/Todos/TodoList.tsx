@@ -1,9 +1,19 @@
+/// <reference path="./interfaces.d.ts" />
+
 import * as React from 'react'
 import { Component } from 'react'
+import { connect } from 'react-redux'
 import TodoItem from './TodoItem'
-import { TodoListProps } from './interfaces'
+import { ToggleTodoAction, DeleteTodoAction } from './actionTypes'
+import { toggleTodo, deleteTodo } from './actionCreators'
 
-class TodoList extends Component<TodoListProps, {}> {
+interface Props {
+  items: Todo[]
+  onToggleClick(id: number): ToggleTodoAction
+  onDeleteClick(id: number): DeleteTodoAction
+}
+
+class TodoList extends Component<Props, {}> {
   render() {
     return <article>
         <ul>
@@ -20,4 +30,14 @@ class TodoList extends Component<TodoListProps, {}> {
   }
 }
 
-export default TodoList
+const mapStateToProps = (state: Todo[]) => ({
+  items: state
+})
+
+export default connect(
+  mapStateToProps,
+  {
+    onToggleClick: toggleTodo,
+    onDeleteClick: deleteTodo
+  }
+)(TodoList)
